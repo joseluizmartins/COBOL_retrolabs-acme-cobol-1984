@@ -1,0 +1,4 @@
+*.CBL -text
+*.TXT -text
+*.SUB -text
+*.hfe binary

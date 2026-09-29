@@ -1,0 +1,39 @@
+RETROLABS ACME - REGRAS DO CIS COBOL 4.5 APLICADAS NOS FONTES
+
+O CIS COBOL implementa o ANSI-74 nivel 1 mais alguns recursos do
+nivel 2 (IF aninhado, PERFORM UNTIL, START, CANCEL). Os fontes
+foram revisados para usar somente:
+
+  PERFORM paragrafo [THRU paragrafo] [UNTIL condicao]
+      SEM PERFORM ... VARYING (erro 101 na compilacao).
+      Lacos com contador: MOVE inicial, PERFORM ... UNTIL e um
+      paragrafo V14-nn que executa o corpo e soma o passo.
+  Condicoes simples (relacao, classe) e IF aninhado.
+      SEM AND / OR: trocados por IF aninhado ou IFs separados.
+  ADD / SUBTRACT com UM receptor por comando.
+  Sem COMPUTE, STRING, UNSTRING, EVALUATE, END-xxx, NOT INVALID,
+  NOT AT END, INITIALIZE, SEARCH, NO ADVANCING.
+
+Ja aceitos pelo compilador no Altos (RACCLI compilou ate o laco):
+  FILE STATUS, PERFORM THRU UNTIL, MOVE para varios receptores,
+  READ/WRITE/REWRITE com INVALID KEY dentro de IF/ELSE, NOT =.
+
+Se aparecer outro erro, anote o numero (**nnn), a linha e o
+comando mostrados e envie; o ERROR 159 depois do 101 e o
+compilador encerrando apos o erro.
+
+REGRAS CONFIRMADAS NO ALTOS / MANUAL DE OPERACAO V4.5
+  ADD a b GIVING c   (sem TO; "ADD a TO b GIVING c" e COBOL-85,
+                      erro 101)
+  ACCEPT ... FROM DATE / TIME nao existe (erro 110).
+  CALL "B:RACCLI.INT": o CALL recebe o NOME DO ARQUIVO de codigo
+      intermediario, com a extensao .INT. Sem a extensao o RTS
+      nao acha o arquivo: RT ERROR 164. O arquivo e procurado
+      no drive atual (ou no drive escrito no nome: "B:X.INT").
+  Maximo de 7 programas chamados ao mesmo tempo.
+  Maximo de 12 arquivos abertos ao mesmo tempo (erro 3); cada
+      arquivo INDEXED conta 2 (dados + indice .IDX).
+  PERFORM aninhado: maximo 22 niveis (erro 154).
+  O RACMENU chama os modulos com o drive fixo (B:). Todos os
+      .INT devem estar no B:. Rodar com: RUNA B:RACMENU.INT
+

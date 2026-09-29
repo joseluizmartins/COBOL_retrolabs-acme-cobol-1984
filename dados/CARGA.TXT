@@ -1,0 +1,34 @@
+RETROLABS ACME - CARGA DA BASE V9 (CARGA AUTOMATICA)
+
+BASE V9: 100 clientes, 40 fornecedores, 500 produtos,
+         616 produto x fornecedor, movimento de 01/10/84 a
+         14/12/84: 93 vendas (250 itens), 18 compras (70 itens),
+         93 titulos a receber, 18 a pagar, 820 movimentos.
+
+ONDE FICA CADA COISA
+  A:  os 12 arquivos .TXT da pasta DADOS_V9 (cerca de 250 KB)
+  B:  RUNA.COM, os .INT e a base carregada (.DAT + .IDX,
+      cerca de 370 KB estimados)
+  Os fontes .CBL nao precisam ficar no B: depois de compilados.
+
+COMO CARREGAR
+  1. Copie os 12 .TXT de DADOS_V9 para o disco do drive A:.
+  2. B>RUNA RACLOAD
+  3. Responda S na confirmacao. A carga e automatica e mostra
+     o andamento: 1/12 PARAMETROS ... 12/12 MOVIMENTO DE
+     ESTOQUE, com a quantidade gravada de cada arquivo.
+  4. Quantidades esperadas:
+      1 PARAMETROS 1        2 CLIENTES 100     3 FORNECEDORES 40
+      4 PRODUTOS 500        5 PROD X FORN 616  6 VENDAS 93
+      7 ITENS VENDAS 250    8 COMPRAS 18       9 ITENS COMPRAS 70
+     10 RECEBER 93         11 PAGAR 18        12 MOVIMENTOS 820
+  5. Confira: DIR B:*.DAT e DIR B:*.IDX (12 arquivos cada) e
+     STAT B:*.* (ocupacao real).
+  6. B>RUNA RACMENU  opcao C (auditoria):
+     VENDAS 93 TOTAL 13,554.99   COMPRAS 18 TOTAL 14,811.51
+     RECEBER 93 ABERTO 7,282.31  PAGAR 18 ABERTO 8,277.79
+  7. Faca uma copia do disco B: carregado (mestre).
+
+Depois de carregada, os .TXT podem sair do A: se precisar de
+espaco. Para recarregar, basta copia-los de novo e repetir.
+
